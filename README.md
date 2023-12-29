@@ -128,6 +128,22 @@ find `Net` section and change the parameters like these:
 now logoff, logon and to test the sound execute the "run" command from terminal and type a wrong command, you should hear a 
 critical error sound. Also try to delete a file on your desktop
 
+# WinXP Login Screen
+
+NOTE: these steps were made on Debian 12, so on other distros paths might differ!
+
+`sudo nano /etc/lightdm/lightdm.conf`
+
+find under `[Seat:*]` section:
+
+`#greeter-session=`
+
+change it to:
+
+`greeter-session=wintc-logonui`
+
+save file, reboot and you'll get the new greeter.
+
 
 
 
