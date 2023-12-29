@@ -39,14 +39,13 @@ go into `sessions and startup` and then into `Automatic startup` tab
 
 add these XP events:
 
-![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/7303da93-e037-4251-b924-57c8665c30fd)
+![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/3611a3f7-7f66-4ff9-93a5-2aeb701a532f)
+
 
 ```
 XP Logoff Sound - on exit
 XP Logoff (user change) sound - on exit
 XP Logon/Boot Sound - on access
-XP Reboot Sound - on reboot
-XP Shutdown Sound - on shutdown
 XP TaskBar - on access
 ```
 
@@ -55,8 +54,6 @@ XP TaskBar - on access
 give to the following events this mpv command:
 
 `XP Logoff Sound: mpv --no-video "/path/to/audiofile"`
-
-`XP Reboot Sound: mpv --no-video "/path/to/audiofile"`
 
 `XP Logoff (user change) sound: mpv --no-video "/path/to/audiofile"`
 
@@ -72,6 +69,47 @@ by simply modifying the path to the audio file to play. After this, edit the eve
 For the taskbar, it's simply a terminal command that automatically runs on boot:
 
 `XP TaskBar: wintc-taskband`
+
+the shutdown/reboot/halt sound doesn't play in time because systemd gets the termination signal too fast
+and we can't hear the sound because it kills every process. To avoid this, we create a systemd service, and 
+we use another sh script.
+
+`sudo touch /etc/systemd/system/XPShutdown.service`
+
+`sudo nano /etc/systemd/system/XPShutdown.service`
+
+copy-paste this content, and edit the `ExecStart path:
+
+```
+[Unit]
+Description=Play XP sound on shutdown-reboot-poweroff-halt
+DefaultDependencies=no
+Before=poweroff.target reboot.target halt.target shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=/path/to/xp-play-shutdown.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=poweroff.target reboot.target halt.target shutdown.target
+```
+
+This calls our sh script that plays the XP shutdown audio file, only in reboot/shutdown/halt events.
+
+setup the `xp-play-shutdown.sh` script, again same as before, change the mpv path file and
+place it where you want, then in `ExecStart` give the path to the sh file.
+
+now do:
+
+`sudo systemctl enable  /etc/systemd/system/XPShutdown.service`
+
+`sudo systemctl start  /etc/systemd/system/XPShutdown.service`
+
+Now when you do one of the actions, the system will wait 2 second, play the audio, and then shutdown.
+
+NOTE: If you do again the systemctl start command, you will hear the windows XP shutdown. To avoid so, delete
+the file created by the script `/tmp/shutdown.log`
 
 # Sounds - Part 4 (Sound theme pack)
 
