@@ -144,6 +144,50 @@ change it to:
 
 save file, reboot and you'll get the new greeter.
 
+# Chiago95 bash terminal (until XP terminal is ready)
+
+`git clone --recursive https://github.com/grassmunk/Chicago95`
+
+`cd Chicago95 && python3 installer.py`
+
+Installer should be with these components:
+
+![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/3f828d6a-1382-4ab1-9a4b-f8d950cd993c)
+
+![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/ff74320c-83e6-4ea0-91fc-2deefc033318)
+
+if you use `zsh` select that instead of bash
+
+now run `xfce4-terminal`, if you don't like the font set it to `monospace-regular`
+
+The terminal will appear like this:
+
+![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/9bfc6f87-e002-4d44-ab59-3ee63385e2a6)
+
+
+# TroubleShooting
+
+Q: The start menu bar remains with some menu items open, what should i do?
+
+A: The items remain in a locked "grab" state, simply click over one of the menu entries, or kill `wintc-taskband` and 
+   restart it.
+
+Q: i can't get rid of the items and the desktop freezed, what should i do?
+
+A: `Ctrl+Alt+F2`, in TTY Mode login as user, then `sudo pkill -9 wintc-taskband`
+
+then based on your distro get back to the main screen, in case of Debian: `Ctrl+Alt+F7`
+
+The TTY windows go from `F1-F8`
+
+
+Q: No quicklaunch support?
+
+A: no, at least not for now.
+
+
+
+
 
 
 
