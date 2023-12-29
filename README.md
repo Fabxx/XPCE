@@ -119,6 +119,8 @@ install all canberra GTK packages: sudo your-package-manager-command libcanberra
 
 then `export GTK_MODULES=canberra-gtk-module`
 
+Alternatively you can paste that GTK flag into `/etc/environment`
+
 go into `xfce4-settings-editor` and find `xsettings`
 
 find `Net` section and change the parameters like these:
