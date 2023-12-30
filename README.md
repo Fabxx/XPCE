@@ -150,8 +150,8 @@ we'll add `udevadm` rules, so on each hardware removal/insertion we detect kerne
 copy paste these rules:
 
 ```
-ACTION=="add",SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device" RUN+="/path/to/XPScripts/USBAttach.sh/"
-ACTION=="remove",SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device" RUN+="/path/to/XPScripts/USBRemove.sh/"
+ACTION=="add",SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",RUN+="/path/to/XPScripts/USBAttach.sh/"
+ACTION=="remove",SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",RUN+="/path/to/XPScripts/USBRemove.sh/"
 ```
 
 edit the RUN path with the scripts path, and also the audio path for mpv inside `USBAttach.sh` and `USBRemove.sh`
