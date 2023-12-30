@@ -207,8 +207,6 @@ set `xfce's terminal` as the default one in `Utilities` tab
 
 ![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/512ac94f-4fb2-4b99-a34d-6a72d9b86b39)
 
-
-
 # TroubleShooting
 
 Q: The start menu bar remains with some menu items open, what should i do?
@@ -231,9 +229,3 @@ A: no, at least not for now.
 # TODO LIST
 
 XP task manager (taskmgr, could base on wine taskmgr)
-
-Quicklaunch icons Support on taskbar (for now can only do shortcuts on Desktop)
-
-Drag & drop support on application tabs
-
-Hardware notification and change detection (instead of doing it via lsusb, find a way to use udevadm events)
