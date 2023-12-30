@@ -200,6 +200,13 @@ The terminal will appear like this:
 
 ![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/9bfc6f87-e002-4d44-ab59-3ee63385e2a6)
 
+Then to change the default terminal go to `default applications`
+
+set `xfce's terminal` as the default one in `Utilities` tab
+
+![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/512ac94f-4fb2-4b99-a34d-6a72d9b86b39)
+
+
 
 # TroubleShooting
 
