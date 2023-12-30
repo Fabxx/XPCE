@@ -215,15 +215,11 @@ A: The items remain in a locked "grab" state, simply click over one of the menu 
 
 Q: i can't get rid of the items and the desktop freezed, what should i do?
 
-A: `Ctrl+Alt+F2`, in TTY Mode login as user, then `sudo pkill -9 wintc-taskband`
+A: `Ctrl+Alt+F2`, in TTY Mode login as user, then `killall wintc-taskband`
 
 then based on your distro get back to the main screen, in case of Debian: `Ctrl+Alt+F7`
 
 The TTY windows go from `F1-F8`
-
-Q: No quicklaunch support?
-
-A: no, at least not for now.
 
 # TODO LIST
 
