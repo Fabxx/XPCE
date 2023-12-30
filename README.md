@@ -187,19 +187,8 @@ Q: No quicklaunch support?
 
 A: no, at least not for now.
 
+# TODO LIST
 
+XP task manager (taskmgr)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+XP USB Sounds (canberra does not support those events, need to find another way to track the new hardware event)
