@@ -13,11 +13,11 @@ readarray -t CheckAddRemoveDevice < <(lsusb)
 
 if [[ ${#CheckAddRemoveDevice[@]} -gt ${#devices[@]} ]]; then 
 
-	mpv --no-video "/media/fabx/517454AE65063897/WD 1TB Dati/Game Music Collection/Windows XP Sounds/Windows XP Hardware Insert.mp3"
+	mpv --no-video "/path/to/Windows XP Hardware Insert.mp3"
 	
 elif [[ ${#CheckAddRemoveDevice[@]} -lt ${#devices[@]} ]]; then
 
-	 mpv --no-video "/media/fabx/517454AE65063897/WD 1TB Dati/Game Music Collection/Windows XP Sounds/Windows XP Hardware Remove.mp3"
+	 mpv --no-video "/path/to/Windows XP Sounds/Windows XP Hardware Remove.mp3"
 fi
 
 readarray -t devices < <(lsusb)
