@@ -139,32 +139,29 @@ find `Net` section and change the parameters like these:
 now logoff, logon and to test the sound execute the "run" command from terminal and type a wrong command, you should hear a 
 critical error sound. Also try to delete a file on your desktop
 
-# Sounds Part 5 (USB Detection)
+# Sounds Part 5 (XP device Sounds (usb devices))
+First, get the `XPScripts` folder and place it into `/home/your_username/`
+we'll add `udevadm` rules, so on each hardware removal/insertion we detect kernel events, and tell udev to execute the script to run the audio
 
-Go into `session and startup`, then in `automatic startup` tab.
+`sudo touch /etc/udev/rules.d/XPSounds.rules`
 
-Add these two XP events:
+`sudo nano /etc/udev/rules.d/XPSounds.rules`
 
-![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/c875255a-a70b-4e41-9494-c40d7e873ee4)
+copy paste these rules:
 
-`XP USB Detection - on access`
+```
+ACTION=="add",SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device" RUN+="/path/to/XPScripts/USBAttach.sh/"
+ACTION=="remove",SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device" RUN+="/path/to/XPScripts/USBRemove.sh/"
+```
 
-`XP USB Detection Off - on exit`
+edit the RUN path with the scripts path, and also the audio path for mpv inside `USBAttach.sh` and `USBRemove.sh`
 
-For Detection, give it the following command:
+then do `sudo udevadm control --reload`
 
-`bash /path/to/USBDetection.sh`
+IMPORTANT NOTES: 
 
-For Detection Off, give it the following command:
-
-`killall USBDetection.sh`
-
-As usual, configure the USBDetection.sh by giving mpv the path to the audio file.
-
-Result (you don't need to run script from terminal, this is just a test):
-
-https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/75bfb5b5-e6e4-46d3-9a0d-54c565a9a205
-
+1) udev can only execute `sh` scripts, not `bash` nor `zsh`
+2) sh scripts MUST BE in home directory to avoid permission issues. 
 
 # WinXP Login Screen
 
