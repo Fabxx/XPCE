@@ -17,6 +17,10 @@ install all the packages created by the builder, based on your distro they will 
 
 (for example, debian will have deb packages)
 
+Get the XPScripts.7z archive and extract it into your `/home/your_username/` directory
+
+Extract the provided windows XP sounds where you want.
+
 # Theme Setup
 
 Go into Aspect and select these:
