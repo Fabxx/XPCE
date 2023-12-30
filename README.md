@@ -234,3 +234,5 @@ XP task manager (taskmgr, could base on wine taskmgr)
 Quicklaunch icons Support on taskbar (for now can only do shortcuts on Desktop)
 
 Drag & drop support on application tabs
+
+Hardware notification and change detection (instead of doing it via lsusb, find a way to use udevadm events)
