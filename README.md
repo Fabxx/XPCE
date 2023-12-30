@@ -139,6 +139,33 @@ find `Net` section and change the parameters like these:
 now logoff, logon and to test the sound execute the "run" command from terminal and type a wrong command, you should hear a 
 critical error sound. Also try to delete a file on your desktop
 
+# Sounds Part 5 (USB Detection)
+
+Go into `session and startup`, then in `automatic startup` tab.
+
+Add these two XP events:
+
+![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/c875255a-a70b-4e41-9494-c40d7e873ee4)
+
+`XP USB Detection - on access`
+
+`XP USB Detection Off - on exit`
+
+For Detection, give it the following command:
+
+`bash /path/to/USBDetection.sh`
+
+For Detection Off, give it the following command:
+
+`killall USBDetection.sh`
+
+As usual, configure the USBDetection.sh by giving mpv the path to the audio file.
+
+Result (you don't need to run script from terminal, this is just a test):
+
+https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/75bfb5b5-e6e4-46d3-9a0d-54c565a9a205
+
+
 # WinXP Login Screen
 
 `sudo nano /etc/lightdm/lightdm.conf`
@@ -196,8 +223,6 @@ A: no, at least not for now.
 # TODO LIST
 
 XP task manager (taskmgr, could base on wine taskmgr)
-
-XP USB Sounds (canberra does not support those events, need to find another way to track the new hardware event)
 
 Quicklaunch icons Support on taskbar (for now can only do shortcuts on Desktop)
 
