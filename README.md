@@ -1,10 +1,15 @@
+# Important note
+
+these steps were made on Debian 12, so on other distros paths and install commands might differ!
+if you know these paths/commands please help out in giving more documentation.
+
 # Initial setup
 
 git clone --recursive https://github.com/rozniak/xfce-winxp-tc
 
-cd xfce-winxp-tc/packaging
+`cd xfce-winxp-tc/packaging`
 
-./buildall.sh, if errors happen install the missing depencies given by the log.
+`./buildall.sh`, if errors happen install the missing depencies given by the log.
 
 a `xptc` folder will be created, go into it
 
@@ -33,7 +38,7 @@ For the mouse cursor go into mouse and touchpad and select this:
 
 # Sounds - Part 1
 
-install mpv media player: `sudo your-package-manager-command mpv`
+install mpv media player: `sudo apt install mpv`
 
 go into `sessions and startup` and then into `Automatic startup` tab
 
@@ -106,7 +111,7 @@ now do:
 
 `sudo systemctl start  /etc/systemd/system/XPShutdown.service`
 
-Now when you do one of the actions, the system will wait 2 second, play the audio, and then shutdown.
+Now when you do one of the actions, the system will wait 2 second, play the audio and then shutdown.
 
 NOTE: If you do again the systemctl start command, you will hear the windows XP shutdown. To avoid so, delete
 the file created by the script `/tmp/shutdown.log`
@@ -115,11 +120,15 @@ the file created by the script `/tmp/shutdown.log`
 
 note, not all apps use these notification sounds, so not all app will produce a sound.
 
-install all canberra GTK packages: sudo your-package-manager-command libcanberra*
+install all canberra GTK packages: sudo apt install libcanberra*
 
-then `export GTK_MODULES=canberra-gtk-module`
+then in terminal: `export GTK_MODULES=canberra-gtk-module`
 
-Alternatively you can paste that GTK flag into `/etc/environment`
+or:
+
+`sudo nano /etc/environment`
+
+copy paste `export GTK_MODULES=canberra-gtk-module` and save the file
 
 go into `xfce4-settings-editor` and find `xsettings`
 
@@ -131,8 +140,6 @@ now logoff, logon and to test the sound execute the "run" command from terminal 
 critical error sound. Also try to delete a file on your desktop
 
 # WinXP Login Screen
-
-NOTE: these steps were made on Debian 12, so on other distros paths might differ!
 
 `sudo nano /etc/lightdm/lightdm.conf`
 
@@ -182,13 +189,16 @@ then based on your distro get back to the main screen, in case of Debian: `Ctrl+
 
 The TTY windows go from `F1-F8`
 
-
 Q: No quicklaunch support?
 
 A: no, at least not for now.
 
 # TODO LIST
 
-XP task manager (taskmgr)
+XP task manager (taskmgr, could base on wine taskmgr)
 
 XP USB Sounds (canberra does not support those events, need to find another way to track the new hardware event)
+
+Quicklaunch icons Support on taskbar (for now can only do shortcuts on Desktop)
+
+Drag & drop support on application tabs
