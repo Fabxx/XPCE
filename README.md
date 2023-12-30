@@ -46,38 +46,38 @@ install mpv media player: `sudo apt install mpv`
 
 go into `sessions and startup` and then into `Automatic startup` tab
 
-add these XP events:
+add these XP commands for these system events:
 
-![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/3611a3f7-7f66-4ff9-93a5-2aeb701a532f)
-
+![immagine](https://github.com/Fabxx/Xfce2Xp-Theme-Guide/assets/30447649/cd2f5a3e-5a71-4aee-a1f5-4ecd9cfe3411)
 
 ```
-XP Logoff Sound - on exit
-XP Logoff (user change) sound - on exit
-XP Logon/Boot Sound - on access
+XP Logon-Boot - on access
+XP Logoff - on exit
+XP Logoff (user change) - on exit
 XP TaskBar - on access
 ```
 
 # Sounds - Part 2
 
-give to the following events this mpv command:
+give to ONLY these events the following commands:
 
-`XP Logoff Sound: mpv --no-video "/path/to/audiofile"`
+`XP Logoff Sound: bash "/path/to/XPScripts/XP Logoff.sh"`
 
-`XP Logoff (user change) sound: mpv --no-video "/path/to/audiofile"`
+`XP Logoff (user change): bash "/path/to/XPScripts/XP Logoff.sh" `
 
-# Sounds - Part 3 (Specific behaviour)
+`XP TaskBar: bash "/path/to/XPScripts/XP Taskbar.sh`
+
+# Sounds - Part 3 (Boot and Login Sounds)
 
 we can't distinguish logon and boot, because both happen when we login with credentials, resulting in a mixed up
-sound. But we can create a script that creates a file in /tmp as a flag, if that file is available, then on next login
-it will play the logon sound, if not it will play the boot sound. edit the `xp-startup_logon-sound.sh` script
-by simply modifying the path to the audio file to play. After this, edit the event like so:
+sound. To avoid this, simply give this command in the indicated event:
 
-`XP Logon/Boot Sound: bash "/path/to/xp-startup_logon-sound.sh"`
+`XP Logon-Boot Sound: bash "/path/to/XP Startup_Login.sh"`
 
-For the taskbar, it's simply a terminal command that automatically runs on boot:
+it creates a file in /tmp as a flag, if that file is available, then on next login
+it will play the logon sound, if not it will play the boot sound.
 
-`XP TaskBar: wintc-taskband`
+# Sounds - Part 4 (Shutdown Sound)
 
 the shutdown/reboot/halt sound doesn't play in time because systemd gets the termination signal too fast
 and we can't hear the sound because it kills every process. To avoid this, we create a systemd service, and 
@@ -104,23 +104,21 @@ TimeoutStartSec=0
 WantedBy=poweroff.target reboot.target halt.target shutdown.target
 ```
 
-This calls our sh script that plays the XP shutdown audio file, only in reboot/shutdown/halt events.
+This calls our sh script that plays the XP shutdown audio file BEFORE the signal kills every process.
 
-setup the `xp-play-shutdown.sh` script, again same as before, change the mpv path file and
-place it where you want, then in `ExecStart` give the path to the sh file.
+setup the `XP Shutdown.sh` script, again same as before, change the mpv path file
+then in `ExecStart` give the path to the sh file.
 
 now do:
 
-`sudo systemctl enable  /etc/systemd/system/XPShutdown.service`
+`sudo systemctl enable  /etc/systemd/system/XPShutdown.service` (enables service on boot)
 
-`sudo systemctl start  /etc/systemd/system/XPShutdown.service`
+`sudo systemctl start  /etc/systemd/system/XPShutdown.service` (shouldn't be needed if enabled)
 
 Now when you do one of the actions, the system will wait 2 second, play the audio and then shutdown.
 
-NOTE: If you do again the systemctl start command, you will hear the windows XP shutdown. To avoid so, delete
-the file created by the script `/tmp/shutdown.log`
 
-# Sounds - Part 4 (Sound theme pack)
+# Sounds - Part 5 (Sound theme pack for info, error, warning, ecc.)
 
 note, not all apps use these notification sounds, so not all app will produce a sound.
 
@@ -143,8 +141,8 @@ find `Net` section and change the parameters like these:
 now logoff, logon and to test the sound execute the "run" command from terminal and type a wrong command, you should hear a 
 critical error sound. Also try to delete a file on your desktop
 
-# Sounds Part 5 (XP device Sounds (usb devices))
-First, get the `XPScripts` folder and place it into `/home/your_username/`
+# Sounds Part 6 (XP device Sounds (usb devices))
+
 we'll add `udevadm` rules, so on each hardware removal/insertion we detect kernel events, and tell udev to execute the script to run the audio
 
 `sudo touch /etc/udev/rules.d/XPSounds.rules`
@@ -160,12 +158,13 @@ ACTION=="remove",SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",RUN+="/path/to/XPSc
 
 edit the RUN path with the scripts path, and also the audio path for mpv inside `USBAttach.sh` and `USBRemove.sh`
 
-then do `sudo udevadm control --reload`
+then do `sudo udevadm control --reload`, detach/attach a USB device and see if it works.
 
 IMPORTANT NOTES: 
 
 1) udev can only execute `sh` scripts, not `bash` nor `zsh`
-2) sh scripts MUST BE in home directory to avoid permission issues. 
+2) sh scripts MUST BE in home directory to avoid permission issues.
+   you won't have any if you extracted all SH files in home directory like i mentioned at the beginning.
 
 # WinXP Login Screen
 
