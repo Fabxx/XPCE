@@ -116,7 +116,7 @@ now do:
 `sudo systemctl status XPShutdown` (should say enabled)
 
 Now when you do one of the actions, the system will wait 2 second, play the audio and then shutdown.
-
+You don't need to do `systemctl start` because the service already waits for the signals.
 
 # Sounds - Part 5 (Sound theme pack for info, error, warning, ecc.)
 
