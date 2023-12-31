@@ -9,7 +9,11 @@ git clone --recursive https://github.com/rozniak/xfce-winxp-tc
 
 `cd xfce-winxp-tc/packaging`
 
-`./buildall.sh`, if errors happen install the missing depencies given by the log.
+install depencies:
+
+`sudo apt install $(./chkdeps.sh -l | cut -d':' -f2 | tr '\n' ' ')`
+
+`./buildall.sh`
 
 a `xptc` folder will be created, go into it
 
