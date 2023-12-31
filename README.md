@@ -97,7 +97,7 @@ Before=poweroff.target reboot.target halt.target shutdown.target
 
 [Service]
 Type=oneshot
-ExecStart=/path/to/xp-play-shutdown.sh
+ExecStart=/path/to/XP Shutdown.sh
 TimeoutStartSec=0
 
 [Install]
@@ -113,7 +113,7 @@ now do:
 
 `sudo systemctl enable  /etc/systemd/system/XPShutdown.service` (enables service on boot)
 
-`sudo systemctl start  /etc/systemd/system/XPShutdown.service` (shouldn't be needed if enabled)
+`sudo systemctl status XPShutdown` (should say enabled)
 
 Now when you do one of the actions, the system will wait 2 second, play the audio and then shutdown.
 
