@@ -134,7 +134,7 @@ or:
 
 `sudo nano /etc/environment`
 
-copy paste `export GTK_MODULES=canberra-gtk-module` and save the file
+copy paste `GTK_MODULES=canberra-gtk-module` and save the file
 
 go into `xfce4-settings-editor` and find `xsettings`
 
