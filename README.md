@@ -57,7 +57,7 @@ add these XP commands for these system events:
 ```
 XP Logon-Boot - on access
 XP Logoff - on exit
-XP Logoff (user change) - on exit
+XP Logoff (user change) - on user change
 XP TaskBar - on access
 ```
 
